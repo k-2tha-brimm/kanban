@@ -1,13 +1,10 @@
-class Card extends React.Component {
-    constructor(props) {
-        this.task = props.task;
-    }
+import React from 'react';
 
-    render() {
-        return (
-            <p>{this.task}</p>
-        )
-    }
-}
+export default function Card(props) {
+    return (
+        <div className="taskCard">
+            {props.text}
+        </div>
+    )
 
-module.exports = Card;
+};
