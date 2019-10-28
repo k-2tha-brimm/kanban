@@ -7,4 +7,12 @@ export default class List extends Component {
         super(props);
     }
 
+    render() {
+        return (
+            <div className="listItem">
+                This is where we will render the cards!
+            </div>
+        )
+    }
+
 }
