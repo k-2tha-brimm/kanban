@@ -8,9 +8,18 @@ export default class List extends Component {
     }
 
     render() {
+        const cards = this.props.cards.map((card, index) => (
+            <li key={index}>
+                <Card {...card} />
+            </li>
+        ));
+        
         return (
             <div className="listItem">
-                This is where we will render the cards!
+                <h2>{this.props.title}</h2>
+                <ul className="taskCards">
+                    {cards}
+                </ul>
             </div>
         )
     }
