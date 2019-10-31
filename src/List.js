@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from './Card';
+import AddCard from './AddCard';
 
 export default class List extends Component {
 
@@ -19,6 +20,9 @@ export default class List extends Component {
                 <h2>{this.props.title}</h2>
                 <ul className="taskCards">
                     {cards}
+                    <li className="add-task-container">
+                        <AddCard listId={this.props.id} onAdd={this.props.onAdd} />
+                    </li>
                 </ul>
             </div>
         )

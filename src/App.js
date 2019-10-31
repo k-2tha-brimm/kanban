@@ -87,11 +87,31 @@ export default class App extends React.Component {
       localStorage.setItem('lists', JSON.stringify(this.state.lists));
     }
   }
+
+  addTaskCard(taskText, listId) {
+    let rawLists = localStorage.getItem('lists');
+    let parsedLists = JSON.parse(rawLists);
+
+    const newTask = {
+      taskText,
+      listId,
+      timeId: new Date().valueOf()
+    }
+
+    parsedLists[listId].cards.push(newTask);
+
+    this.setState({
+      lists: parsedLists
+    });
+
+    localStorage.setItem('lsts', JSON.stringify(parsedLists));
+  }
   
   render() {
     const lists = this.state.lists.map((list, index) => (
       <li className="listWrapper" key={index}>
-        <List {...list} />
+        <List {...list}
+          onAdd={(taskText, listId) => this.addTaskCard(taskText, listId)} />
       </li>
     ));
 
