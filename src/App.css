@@ -1,47 +1,19 @@
-.winnie {
-  background-color: #8E6E95;
-}
-
-.bob {
-  background-color: #39A59C;
-}
-
-.thomas {
-  background-color: #344759;
-}
-
-.george {
-  background-color: #E8741E;
-}
-
-.columns {
-  list-style: none;
+.lists {
   display: flex;
-  flex-direction: row;
-  padding-left: 0;
+  margin-top: 50px;
+  align-content: center;
+  list-style: none;
+  justify-content: space-around;
 }
 
-h4 {
-  text-align: center;
-  color: white;
-  height: 30px;
-  vertical-align: middle;
-  line-height: 30px;
-}
-
-.person {
-  margin-left: 25px;
+.list-wrapper {
   margin-right: 25px;
-  width: 25%;
 }
 
-.task {
-  background-color: white;
-
+.list-wrapper > h2 {
+  align-content: center;
 }
 
-html {
-  background-color: #ECEEEE;
-  height: 100vh;
-  width: 100vw;
+.task-cards {
+  list-style: none;
 }

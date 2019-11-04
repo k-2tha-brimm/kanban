@@ -20,6 +20,7 @@ export default class App extends React.Component {
           {
             title: 'George',
             id: 0,
+            color: 'green',
             cards: [
               {
                 text: 'This is the first default task',
@@ -36,6 +37,7 @@ export default class App extends React.Component {
           {
             title: 'Kevin',
             id: 1,
+            color: 'blue',
             cards: [
               {
                 text: 'This is the first default task',
@@ -52,6 +54,7 @@ export default class App extends React.Component {
           {
             title: 'Zach',
             id: 2,
+            color: 'black',
             cards: [
               {
                 text: 'This is the first default task',
@@ -68,6 +71,7 @@ export default class App extends React.Component {
           {
             title: 'Chris',
             id: 3,
+            color: 'purple',
             cards: [
               {
                 text: 'This is the first default task',
@@ -109,7 +113,7 @@ export default class App extends React.Component {
   
   render() {
     const lists = this.state.lists.map((list, index) => (
-      <li className="listWrapper" key={index}>
+      <li className="list-wrapper" key={index}>
         <List {...list}
           onAdd={(taskText, listId) => this.addTaskCard(taskText, listId)} />
       </li>

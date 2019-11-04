@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import Card from './Card';
 import AddCard from './AddCard';
+import './List.css';
 
 export default class List extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            color: this.props.color
+        }
     }
 
     render() {
@@ -14,11 +18,22 @@ export default class List extends Component {
                 <Card {...card} />
             </li>
         ));
-        
+
+        const color = this.state.color;
+
+        const titleColor = {
+            backgroundColor: color,
+            textAlign: 'center',
+            border: '1px solid black',
+            margin: '0 auto',
+            lineHeight: 2,
+            color: 'white'
+        }
+        console.log(this.props);
         return (
             <div className="listItem">
-                <h2>{this.props.title}</h2>
-                <ul className="taskCards">
+                <h2 style={titleColor}>{this.props.title}</h2>
+                <ul className="task-cards">
                     {cards}
                     <li className="add-task-container">
                         <AddCard listId={this.props.id} onAdd={this.props.onAdd} />
