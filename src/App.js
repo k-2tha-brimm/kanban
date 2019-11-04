@@ -93,8 +93,8 @@ export default class App extends React.Component {
     let parsedLists = JSON.parse(rawLists);
 
     const newTask = {
-      taskText,
-      listId,
+      text: taskText,
+      listNumber: listId,
       timeId: new Date().valueOf()
     }
 
@@ -104,7 +104,7 @@ export default class App extends React.Component {
       lists: parsedLists
     });
 
-    localStorage.setItem('lsts', JSON.stringify(parsedLists));
+    localStorage.setItem('lists', JSON.stringify(parsedLists));
   }
   
   render() {
