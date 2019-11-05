@@ -92,6 +92,28 @@ export default class App extends React.Component {
     }
   }
 
+  moveCardLeft(listNumber, cardId) {
+    if (listNumber === 0) {
+      return;
+    } else {
+      let rawLists = localStorage.getItem('lists');
+      let parsedLists = JSON.parse(rawLists);
+
+
+
+    }
+  }
+
+
+  moveCardRight(listNumber, cardId) {
+    if (listNumber === 3) {
+      return;
+    } else {
+      let rawLists = localStorage.getItem('lists');
+      let parsedLists = JSON.parse(rawLists);
+    }
+  }
+
   addTaskCard(taskText, listId) {
     let rawLists = localStorage.getItem('lists');
     let parsedLists = JSON.parse(rawLists);
