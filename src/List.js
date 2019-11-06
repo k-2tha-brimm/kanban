@@ -15,7 +15,8 @@ export default class List extends Component {
     render() {
         const cards = this.props.cards.map((card, index) => (
             <li key={index}>
-                <Card {...card} />
+                <Card {...card}
+                 moveLeft={this.props.moveLeft} />
             </li>
         ));
 
@@ -29,7 +30,6 @@ export default class List extends Component {
             lineHeight: 2,
             color: 'white'
         }
-        console.log(this.props);
         return (
             <div className="listItem">
                 <h2 style={titleColor}>{this.props.title}</h2>

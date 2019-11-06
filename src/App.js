@@ -92,15 +92,32 @@ export default class App extends React.Component {
     }
   }
 
-  moveCardLeft(listNumber, cardId) {
-    if (listNumber === 0) {
+  removeCard(list, id) {
+    for (let i = 0; i < list.length; i++) {
+      if (id === list[i].timeId) {
+        list.splice(i, 1);
+        console.log(list);
+        break;
+      }
+    }
+    return list;
+  }
+
+  moveCardLeft(card) {
+    if (card.listNumber === 0) {
       return;
     } else {
       let rawLists = localStorage.getItem('lists');
       let parsedLists = JSON.parse(rawLists);
+      let newList = card.listNumber - 1;
 
-
-
+      parsedLists.forEach((person, index) => {
+        if (person.id === card.listNumber) {
+          person = this.removeCard(person.cards, card.timeId);
+        };
+      });
+      this.setState({ lists: parsedLists })
+      localStorage.setItem('lists', JSON.stringify(parsedLists));
     }
   }
 
@@ -137,7 +154,8 @@ export default class App extends React.Component {
     const lists = this.state.lists.map((list, index) => (
       <li className="list-wrapper" key={index}>
         <List {...list}
-          onAdd={(taskText, listId) => this.addTaskCard(taskText, listId)} />
+          onAdd={(taskText, listId) => this.addTaskCard(taskText, listId)}
+          moveLeft={(card) => this.moveCardLeft(card)} />
       </li>
     ));
 
