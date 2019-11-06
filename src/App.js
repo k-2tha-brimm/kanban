@@ -92,44 +92,59 @@ export default class App extends React.Component {
     }
   }
 
-  removeCard(list, id) {
-    for (let i = 0; i < list.length; i++) {
-      if (id === list[i].timeId) {
-        list.splice(i, 1);
-        console.log(list);
+  swapLists(old, notOld, card) {
+    for (let i = 0; i < old.cards.length; i++) {
+      if (old.cards[i].timeId === card.timeId) {
+        old.cards.splice(i, 1);
         break;
       }
     }
-    return list;
+    notOld.cards.push(card);
+    return [old, notOld];
   }
 
   moveCardLeft(card) {
+    let oldPerson;
+    let newPerson;
+
     if (card.listNumber === 0) {
       return;
     } else {
       let rawLists = localStorage.getItem('lists');
       let parsedLists = JSON.parse(rawLists);
-      let newList = card.listNumber - 1;
 
-      parsedLists.forEach((person, index) => {
-        if (person.id === card.listNumber) {
-          person = this.removeCard(person.cards, card.timeId);
-        };
+      for (let i = 0; i < parsedLists.length; i++) {
+        if (i === card.listNumber - 1) {
+          newPerson = parsedLists[i];
+        } else if (i === card.listNumber) {
+          oldPerson = parsedLists[i];
+        }
+      }
+
+      let listz = this.swapLists(oldPerson, newPerson, card);
+
+      let listzzz = parsedLists.map(list => {
+        if (list.id === listz[0].id) {
+          return listz[0];
+        } else if (list.id === listz[1].id) {
+          return listz[1];
+        }
+        return list;
       });
-      this.setState({ lists: parsedLists })
-      localStorage.setItem('lists', JSON.stringify(parsedLists));
+      this.setState({ lists: listzzz });
+      localStorage.setItem('lists', JSON.stringify(listzzz));
     }
   }
 
 
-  moveCardRight(listNumber, cardId) {
-    if (listNumber === 3) {
-      return;
-    } else {
-      let rawLists = localStorage.getItem('lists');
-      let parsedLists = JSON.parse(rawLists);
-    }
-  }
+  // moveCardRight(listNumber, cardId) {
+  //   if (listNumber === 3) {
+  //     return;
+  //   } else {
+  //     let rawLists = localStorage.getItem('lists');
+  //     let parsedLists = JSON.parse(rawLists);
+  //   }
+  // }
 
   addTaskCard(taskText, listId) {
     let rawLists = localStorage.getItem('lists');
